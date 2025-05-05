@@ -1,0 +1,23 @@
+import math
+
+def f(x):
+    return math.log(x) - math.atan(x)
+
+def f_prime(x):
+    return 1/x - 1/(1 + x**2)
+
+def newton_method(x0, tol=1e-6, max_iter=100):
+    for i in range(max_iter):
+        x1 = x0 - f(x0) / f_prime(x0)
+        if abs(x1 - x0) < tol:
+            return x1
+        x0 = x1
+
+    print("Maksimum iterasiya sayına çatıldı.")
+    return x0
+
+x0 = 3.5  # Interval [3.0, 4.0] içərisindən bir başlanğıc qiyməti
+
+root = newton_method(x0)
+
+print(f"Tənliyin kökü: {root}")
